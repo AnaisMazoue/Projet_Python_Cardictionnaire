@@ -5,7 +5,7 @@ Il s'agit d'un projet de dictionnaire ayant pour sujet les cardinaux. Le Cardict
 Cette application web a été réalisée sous Python, avec Flask et SQLAlchemy dans le cadre du cours d'introduction à Python et au développement web avec Python pour les sciences humaines de M. Thibault Clérice dans le cadre du master "Technologies numériques appliquées à l'histoire" de l'École nationale des chartes.
 
 # Installation 
-- Cloner le dépôt : 
+- Cloner le dépôt : https://github.com/AnaisMazoue/Projet_Python_Cardictionnaire.git
 - Vérifier que la version de python correspond à Python 3.x : `python --version`
 - Se déplacer dans le dossier dans le dossier app
 - Installer un environnement virtuel : `python3 -m venv [nom de l'environnement virtuel]`
