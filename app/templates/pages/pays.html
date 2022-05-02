@@ -1,0 +1,55 @@
+{% extends "conteneur.html" %}
+
+{% block titre %} | {{pays.pays_nom}}{% endblock %}
+
+{% block corps %}
+
+<div class="centrer_contenu">
+    <h1>{{pays.pays_prenom}}</h1>
+    <h5>Identifiant : {{pays.pays_id}}</h5>
+    <br>
+    <br>
+    <dt>Cardinaux ayant réalisé une mission diplomatique dans cet État</dt>
+    <br>
+    <ul >
+        {% for mission in mission %}
+            <li>
+                <b>{{mission.mission_id_cardinal}} : </b><a href="{{url_for('cardinal', cardinal_id=mission.cardinal.cardinal_id)}}">{{mission.cardinal.cardinal_prenom}} {{mission.cardinal.cardinal_nom}}</a>
+                | Ville : <a href="{{url_for('ville', ville_id=mission.ville.ville_id)}}">{{mission.ville.ville_nom}}</a>
+            </li>
+        {% endfor%}
+    </ul>
+    <br>
+    <br>
+    <!-- Historique des modifications -->
+    <div>
+        <h6>Historique des modifications</h6>
+        {% if pays.authorships %}
+            {% for modification in pays.authorships %}
+                <!-- strftime permet de définir le format de la date (ici JJ/MM/AAAA, HH:MM -->
+                <li>{{modification.user.user_nom}} | {{modification.authorship_date.strftime('%d/%m/%Y, %H:%M')}}</li>
+            {% endfor %}
+        {% else %}
+        <span>Il n'y a pas eu de mofication sur cette page.</span>
+        {% endif %}
+    </div>
+
+    <br>
+    <br>
+    <!-- Boutons -->
+    <div align="center">
+        <a href="{{url_for('pays_update', pays_id=pays.pays_id)}}" class="btn btn-outline-danger">Modifier la notice de l'État</a>
+        <a href="{{url_for('pays_delete', pays_id=pays.pays_id)}}" class="btn btn-danger">Supprimer la notice de l'État</a>
+        <br>
+        <br>
+        <a href="{{url_for('pays_add')}}" class="btn btn-outline-danger">Ajouter un État</a>
+    </div>
+    <br>
+    <div align="center">
+        <br>
+        <a href="{{url_for('index_pays')}}">Retour à l'index des États</a>
+        <br>
+        <a href="{{url_for('accueil')}}">Retour à l'accueil</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <title>Cardictionnaire</title>
+    {% include "partials/metadata.html" %}
+    {% include "partials/css.html" %}
+    {% include "partials/js.html" %}
+    <style type="text/css">
+            .hero  {
+                background-position: center center;
+                padding:15vh;
+                background-image: url({{url_for("static", filename="images/BritishMuseumConclave1644.jpg")}});
+            }
+            .container .hero {
+                background-image: none;
+            }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{{url_for('accueil')}}">Cardictionnaire</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown text-white">
+        <a class="nav-link dropdown-toggle" href="{{url_for('index_cardinaux')}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Les cardinaux
+        </a>
+        <div class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+          <a class="dropdown-item" href="{{url_for('index_cardinaux_romains')}}">Les cardinaux romains</a>
+          <a class="dropdown-item" href="{{url_for('index_cardinaux_florentins')}}">Les cardinaux florentins</a>
+          <a class="dropdown-item" href="{{url_for('index_autres_cardinaux')}}">Les autres cardinaux</a>
+          <a class="dropdown-item" href="{{url_for('index_cardinaux')}}">Tous les cardinaux</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown text-white">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Les lieux
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{url_for('index_pays')}}">Les États</a>
+          <a class="dropdown-item" href="{{url_for('index_villes')}}">Les villes</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown text-white">
+        <a class="nav-link dropdown-toggle" href="{{url_for('index_formations')}}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Les cursus
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{url_for('index_formations')}}">Les cursus universitaires</a>
+        </div>
+      </li>
+
+
+        {% if not current_user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('inscription')}}">Inscription</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('connexion')}}">Connexion</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('deconnexion')}}">Déconnexion ({{current_user.user_nom}})</a>
+        </li>
+        {% endif %}
+    </ul>
+
+    <form class="form-inline" action="{{url_for('recherche')}}" method="GET">
+        <input class="form-control" name="keyword" type="search" placeholder="Recherche rapide" aria-label="Recherche">
+        <button class="btn btn-outline-light" type="submit">Rechercher</button>
+    </form>
+</div>
+</nav>
+{% block afternav %}{%endblock%}
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="row">
+        <div class="col">
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class="row">
+        <div class="col">
+            {% block corps %}{% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

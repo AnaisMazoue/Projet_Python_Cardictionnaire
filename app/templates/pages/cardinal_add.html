@@ -1,0 +1,50 @@
+{% extends "conteneur.html" %}
+
+{% block titre %} Ajout d'un cardinal
+{% endblock %}
+
+{% block corps %}
+    <h1>Formulaire d'ajout de cardinal</h1>
+    <br>
+    <form class="form" method="POST" action="{{url_for('cardinal_add')}}">
+        <div class="mb-3">
+            <label for="cardinal_add_nom" class="form-label"><b>Nom du cardinal</b></label>
+            <input type="text" class="form-control" id="cardinal_add_nom" name="cardinal_add_nom" placeholder="dans la langue d'origine">
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="cardinal_add_prenom" class="form-label"><b>Prénom du cardinal</b></label>
+            <input type="text" class="form-control" id="cardinal_add_prenom" name="cardinal_add_prenom" placeholder="dans la langue d'origine">
+        </div>
+        <div class="mb-3">
+            <label for="cardinal_add_date_naissance" class="form-label"><b>Date de naissance du cardinal</b></label>
+            <input type="text" class="form-control" id="cardinal_add_date_naissance" name="cardinal_add_date_naissance" placeholder="avec le plus de précision possible">
+        </div>
+        <div class="mb-3">
+            <label for="cardinal_add_date_deces" class="form-label"><b>Date de décès du cardinal</b></label>
+            <input type="text" class="form-control" id="cardinal_add_date_deces" name="cardinal_add_date_deces" placeholder="avec le plus de précision possible">
+        </div>
+        <div class="mb-3">
+            <label for="cardinal_add_pays_naissance" class="form-label"><b>État où est né le cardinal</b></label>
+            <input type="text" class="form-control" id="cardinal_add_pays_naissance" name="cardinal_add_pays_naissance" placeholder="selon les frontières et nom de l'époque correspondante">
+        </div>
+        <div class="mb-3">
+            <label for="cardinal_add_ville_naissance" class="form-label"><b>Ville où est né le cardinal</b></label>
+            <input type="text" class="form-control" id="cardinal_add_ville_naissance" name="cardinal_add_ville_naissance" placeholder="selon le nom en usage à l'époque correspondante">
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-success btn-lg" type="submit">Ajouter</button>
+        <a href="{{url_for('accueil')}}" class="btn btn-outline-secondary btn-lg">Annuler</a>
+    </form>
+    <br>
+    <br>
+
+    <div align="center">
+        <br>
+        <br>
+        <a href="{{url_for('index_cardinaux')}}">Retour à l'index général des cardinaux</a>
+        <br>
+        <a href="{{url_for('accueil')}}">Retour à l'accueil</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}
+    {%if ville %}| {{ville.ville_nom}} {% endif %}
+{% endblock %}
+
+{% block corps %}
+    <h1>Modification de la ville</h1>
+    <br>
+    {% if ville %}
+        <!-- Message affiché en cas d'envoi de modification -->
+        {% if updated %}
+            <div class="alert alert-success">
+                <p>Merci de participer à l'enrichissment de ce projet !</p>
+                <p><a href="{{url_for('ville', ville_id=ville.ville_id)}}">Retour à la notice de la ville</a></p>
+                <p><a href="{{url_for('index_villes')}}">Retour à l'index des villes</a></p>
+                <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
+            </div>
+        {% endif %}
+        <form method="POST">
+            <div class="mb-3">
+                <label for="ville_nom" class="form-label"><b>Nom de la ville</b></label>
+                <input type="text" class="form-control" id="ville_nom" name="ville_nom" value="{{ville.ville_nom}}"/>
+            </div>
+            <br>
+            <div class="mb-3">
+                <label for="ville_latitude" class="form-label"><b>Latitude</b></label>
+                <input type="text" class="form-control" id="ville_latitude" name="ville_latitude" value="{{ville.ville_latitude}}"/>
+            </div>
+            <div class="mb-3">
+                <label for="ville_longitude" class="form-label"><b>Longitude</b></label>
+                <input type="text" class="form-control" id="ville_longitude" name="ville_longitude" value="{{ville.ville_longitude}}"/>
+            </div>
+            <br>
+            <br>
+            <button class="btn btn-success btn-lg" type="submit">Modifier</button>
+            <a href="{{url_for('ville', ville_id=ville.ville_id)}}" class="btn btn-outline-secondary btn-lg">Annuler</a>
+        </form>
+        <br>
+        <br>
+    {% endif %}
+    <div align="center">
+        <a href="{{url_for('ville', ville_id=ville.ville_id)}}">Retour à la notice de la ville</a>
+        <br>
+        <br>
+        <a href="{{url_for('index_villes')}}">Retour à l'index des villes</a>
+        <br>
+        <a href="{{url_for('accueil')}}">Retour à l'accueil</a>
+    </div>
+{% endblock %}

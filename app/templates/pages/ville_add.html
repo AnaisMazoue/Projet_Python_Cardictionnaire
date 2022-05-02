@@ -1,0 +1,38 @@
+{% extends "conteneur.html" %}
+
+{% block titre %} Ajout d'une ville
+{% endblock %}
+
+{% block corps %}
+    <h1>Formulaire d'ajout de ville</h1>
+    <br>
+    <form class="form" method="POST" action="{{url_for('ville_add')}}">
+        <div class="mb-3">
+            <label for="ville_add_nom" class="form-label"><b>Nom du la ville</b></label>
+            <input type="text" class="form-control" id="ville_add_nom" name="ville_add_nom" placeholder="selon le nom en usage à l'époque correspondante">
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="ville_add_latitude" class="form-label"><b>Latitude</b></label>
+            <input type="text" class="form-control" id="ville_add_latitude" name="ville_add_latitude" placeholder="coordonnées géographiques">
+        </div>
+        <div class="mb-3">
+            <label for="ville_add_longitude" class="form-label"><b>Longitude</b></label>
+            <input type="text" class="form-control" id="ville_add_longitude" name="ville_add_longitude" placeholder="coordonnées géographiques">
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-success btn-lg" type="submit">Ajouter</button>
+        <a href="{{url_for('accueil')}}" class="btn btn-outline-secondary btn-lg">Annuler</a>
+    </form>
+    <br>
+    <br>
+
+    <div align="center">
+        <br>
+        <br>
+        <a href="{{url_for('index_villes')}}">Retour à l'index général des villes</a>
+        <br>
+        <a href="{{url_for('accueil')}}">Retour à l'accueil</a>
+    </div>
+{% endblock %}

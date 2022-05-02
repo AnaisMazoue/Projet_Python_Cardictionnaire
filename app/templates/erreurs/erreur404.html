@@ -1,0 +1,20 @@
+{% extends "conteneur.html" %}
+
+{% block corps %}
+<style type="text/css">
+    img.img_erreur {
+        margin-bottom: 30px;
+    }
+</style>
+
+<br>
+<div align="center">
+    <img class="img_erreur" src="../../static/images/erreur404.jpg" alt="erreur 404" width="60%" />
+    <br>
+    <br>
+    <h1 >Habemus papam... mais pas de cardinal !</h1>
+    <br>
+    <p> <a href="{{url_for('accueil')}}">Retour à la page d'accueil</a></p>
+</div>
+<br>
+{% endblock %}

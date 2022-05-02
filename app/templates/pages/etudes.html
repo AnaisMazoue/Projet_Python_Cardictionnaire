@@ -1,0 +1,113 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}Gérer les études suivies par les cardinaux{% endblock %}
+
+{% block corps %}
+
+<div>
+    <div>
+        <div class>
+            <div class>
+                <h2>Gérer les études suivies par les cardinaux<button type="button"  class="btn btn-success btn-lg float-right"
+                data-toggle="modal" data-target="#mymodal">Ajouter une formation</button> </h2>
+                <br>
+
+                <br>
+                <table class="table table-hover table-bordered table-striped ">
+                    <thead class="thead-dark">
+                    <tr class="text-center">
+                        <th>Id du cardinal</th>
+                        <th>Id de la formation</th>
+                        <th>Id de la ville</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for etudes in etudes %}
+                    <!-- Suppression d'une formation -->
+                        <tr class="text-center">
+                            <td class="align-middle">{{etudes.cardinal.cardinal_prenom}} {{etudes.cardinal.cardinal_nom}}</td>
+                            <td class="align-middle">{{etudes.formation.formation_cursus}}</td>
+                            <td class="align-middle">{{etudes.ville.ville_nom}}</td>
+                            <td class="align-middle">{{mission.mission_date}}</td>
+                            <td class="align-middle">
+                                <a href="/mission/{{mission.mission_id}}/update" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{mission.mission_id}}">Modifier</a>
+                                <a href="/mission/{{mission.mission_id}}/delete" class="btn btn-danger btn-xs" onclick="return confirm('Cette formation va être supprimée, êtes-vous certain de vouloir continuer ?')">Supprimer</a>
+                            </td>
+                        </tr>
+
+
+                        <!-- Modifier une mission-->
+                        <div id="modaledit{{mission.mission_id}}" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Modifier la formation suivie par un cardinal</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{url_for('etudes_update', etudes_id=etudes.etudes_id)}}" method="POST">
+                                            <div class="form-group">
+                                                <label>Id du cardinal</label>
+                                                <input type="text" class="form-control" name="etudes_id_cardinal" value="{{etudes.etudes_id_cardinal}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Id de la formation</label>
+                                                <input type="text" class="form-control" name="etudes_id_formation" value="{{etudes.etudes_id_formation}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Id de la ville</label>
+                                                <input type="text" class="form-control" name="etudes_id_ville" value="{{etudes.etudes_id_ville}}">
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-success" type="submit">Modifier</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Ajouter une formation-->
+            <div id="mymodal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Ajouter une formation au parcours d'un cardinal</h4>
+                            <br>
+                            <div class="modal-body">
+                                <form action="{{url_for('mission_add')}}" method="POST">
+                                    <div class="form-group">
+                                        <label>Id du cardinal</label>
+                                        <input type="text" class="form-control" name="etudes_add_id_cardinal">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Id de la formation'</label>
+                                        <input type="text" class="form-control" name="etudes_add_id_formation">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Id de la ville</label>
+                                        <input type="text" class="form-control" name="etudes_add_id_ville">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-success" type="submit">Ajouter</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

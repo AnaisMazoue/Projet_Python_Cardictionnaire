@@ -1,0 +1,30 @@
+{% extends "conteneur.html" %}
+
+{% block titre %} Supprimer {{del_formation.formation_cursus}}{% endblock %}
+
+{% block corps %}
+    <h1>Suppression du cursus</h1>
+    <br>
+    <form method="POST" action="{{url_for('formation_delete', formation_id=del_formation.formation_id)}}">
+        <div>
+            <p>Voulez-vous vraiment supprimer ce cursus ?
+            <br>
+            <br>
+            <p><b>Nom du cursus :</b> {{del_formation.formation_cursus}}</p>
+        </div>
+        <br/>
+        <div>
+          <div>
+              <button type="submit" class="btn btn-danger btn-lg">Confirmer</button>
+              <a href="{{url_for('formation', formation_id=del_formation.formation_id)}}" class="btn btn-outline-secondary btn-lg">Annuler</a>
+          </div>
+        </div>
+    </form>
+    <br>
+    <br>
+    <div align="center">
+        <a href="{{url_for('index_formations')}}">Retour à l'index général des formations</a>
+        <br>
+        <a href="{{url_for('accueil')}}">Retour à l'accueil</a>
+    </div>
+{% endblock %}

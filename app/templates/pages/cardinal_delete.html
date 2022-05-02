@@ -1,0 +1,30 @@
+{% extends "conteneur.html" %}
+
+{% block titre %} Supprimer {{del_cardinal.cardinal_nom}}{% endblock %}
+
+{% block corps %}
+    <h1>Suppression du cardinal</h1>
+    <br>
+    <form method="POST" action="{{url_for('cardinal_delete', cardinal_id=del_cardinal.cardinal_id)}}">
+        <div>
+            <p>Voulez-vous vraiment supprimer ce cardinal ?
+            <br>
+            <br>
+            <p><b>Nom du cardinal :</b> {{del_cardinal.cardinal_prenom}} {{del_cardinal.cardinal_nom}}</p>
+        </div>
+        <br/>
+        <div>
+          <div>
+              <button type="submit" class="btn btn-danger btn-lg">Confirmer</button>
+              <a href="{{url_for('cardinal', cardinal_id=del_cardinal.cardinal_id)}}" class="btn btn-outline-secondary btn-lg">Annuler</a>
+          </div>
+        </div>
+    </form>
+    <br>
+    <br>
+    <div align="center">
+        <a href="{{url_for('index_cardinaux')}}">Retour à l'index général des cardinaux</a>
+        <br>
+        <a href="{{url_for('accueil')}}">Retour à l'accueil</a>
+    </div>
+{% endblock %}

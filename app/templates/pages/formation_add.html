@@ -1,0 +1,29 @@
+{% extends "conteneur.html" %}
+
+{% block titre %} Ajout d'une formation
+{% endblock %}
+
+{% block corps %}
+    <h1>Formulaire d'ajout de formation</h1>
+    <br>
+    <form class="form" method="POST" action="{{url_for('formation_add')}}">
+        <div class="mb-3">
+            <label for="formation_add_cursus" class="form-label"><b>Nom du cursus</b></label>
+            <input type="text" class="form-control" id="formation_add_cursus" name="formation_add_cursus" placeholder="avec le plus de précision">
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-success btn-lg" type="submit">Ajouter</button>
+        <a href="{{url_for('accueil')}}" class="btn btn-outline-secondary btn-lg">Annuler</a>
+    </form>
+    <br>
+    <br>
+
+    <div align="center">
+        <br>
+        <br>
+        <a href="{{url_for('index_formations')}}">Retour à l'index général des formations</a>
+        <br>
+        <a href="{{url_for('accueil')}}">Retour à l'accueil</a>
+    </div>
+{% endblock %}

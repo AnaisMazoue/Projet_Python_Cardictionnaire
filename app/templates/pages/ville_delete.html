@@ -1,0 +1,30 @@
+{% extends "conteneur.html" %}
+
+{% block titre %} Supprimer {{del_ville.ville_nom}}{% endblock %}
+
+{% block corps %}
+    <h1>Suppression de la ville</h1>
+    <br>
+    <form method="POST" action="{{url_for('ville_delete', ville_id=del_ville.ville_id)}}">
+        <div>
+            <p>Voulez-vous vraiment supprimer cette ville ?
+            <br>
+            <br>
+            <p><b>Nom de la ville :</b> {{del_ville.ville_prenom}} {{del_ville.ville_nom}}</p>
+        </div>
+        <br/>
+        <div>
+          <div>
+              <button type="submit" class="btn btn-danger btn-lg">Confirmer</button>
+              <a href="{{url_for('ville', ville_id=del_ville.ville_id)}}" class="btn btn-outline-secondary btn-lg">Annuler</a>
+          </div>
+        </div>
+    </form>
+    <br>
+    <br>
+    <div align="center">
+        <a href="{{url_for('index_villes')}}">Retour à l'index général des villes</a>
+        <br>
+        <a href="{{url_for('accueil')}}">Retour à l'accueil</a>
+    </div>
+{% endblock %}

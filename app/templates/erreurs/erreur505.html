@@ -1,0 +1,20 @@
+{% extends "conteneur.html" %}
+
+{% block corps %}
+<style type="text/css">
+    img.img_erreur {
+        margin-bottom: 30px;
+    }
+</style>
+
+<br>
+<div align="center">
+    <img class="img_erreur" src="../../static/images/erreur500.png" alt="erreur 500" width="60%" />
+    <br>
+    <br>
+    <h1>Erreur serveur !</h1>
+    <br>
+    <p>Le conclave est en cours, les cardianux ne sont pas disponibles, revenez plus tard !</p>
+</div>
+<br>
+{% endblock %}

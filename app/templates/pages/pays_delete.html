@@ -1,0 +1,30 @@
+{% extends "conteneur.html" %}
+
+{% block titre %} Supprimer {{del_pays.pays_nom}}{% endblock %}
+
+{% block corps %}
+    <h1>Suppression de l'État</h1>
+    <br>
+    <form method="POST" action="{{url_for('pays_delete', pays_id=del_pays.pays_id)}}">
+        <div>
+            <p>Voulez-vous vraiment supprimer cet État ?
+            <br>
+            <br>
+            <p><b>Nom de l'État :</b> {{del_pays.pays_nom}}</p>
+        </div>
+        <br/>
+        <div>
+          <div>
+              <button type="submit" class="btn btn-danger btn-lg">Confirmer</button>
+              <a href="{{url_for('pays', pays_id=del_pays.pays_id)}}" class="btn btn-outline-secondary btn-lg">Annuler</a>
+          </div>
+        </div>
+    </form>
+    <br>
+    <br>
+    <div align="center">
+        <a href="{{url_for('index_pays')}}">Retour à l'index général des États</a>
+        <br>
+        <a href="{{url_for('accueil')}}">Retour à l'accueil</a>
+    </div>
+{% endblock %}

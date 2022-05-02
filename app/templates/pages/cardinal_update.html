@@ -1,0 +1,62 @@
+{% extends "conteneur.html" %}
+
+{% block titre %}
+    {%if cardinal %}| {{cardinal.cardinal_nom}} {% endif %}
+{% endblock %}
+
+{% block corps %}
+    <h1>Modification du cardinal</h1>
+    <br>
+    {% if cardinal %}
+        <!-- Message affiché en cas d'envoi de modification -->
+        {% if updated %}
+            <div class="alert alert-success">
+                <p>Merci de participer à l'enrichissment de ce projet !</p>
+                <p><a href="{{url_for('cardinal', cardinal_id=cardinal.cardinal_id)}}">Retour à la notice du cardinal</a></p>
+                <p><a href="{{url_for('index_cardinaux')}}">Retour à l'index des cardinaux</a></p>
+                <p><a href="{{url_for('accueil')}}">Retour à l'accueil</a></p>
+            </div>
+        {% endif %}
+        <form method="POST">
+            <div class="mb-3">
+                <label for="cardinal_nom" class="form-label"><b>Nom du cardinal</b></label>
+                <input type="text" class="form-control" id="cardinal_nom" name="cardinal_nom" value="{{cardinal.cardinal_nom}}"/>
+            </div>
+            <br>
+            <div class="mb-3">
+                <label for="cardinal_prenom" class="form-label"><b>Prénom du cardinal</b></label>
+                <input type="text" class="form-control" id="cardinal_prenom" name="cardinal_prenom" value="{{cardinal.cardinal_prenom}}"/>
+            </div>
+            <div class="mb-3">
+                <label for="cardinal_date_naissance" class="form-label"><b>Date de naissance du cardinal</b></label>
+                <input type="text" class="form-control" id="cardinal_date_naissance" name="cardinal_date_naissance" value="{{cardinal.cardinal_date_naissance}}"/>
+            </div>
+            <div class="mb-3">
+                <label for="cardinal_date_deces" class="form-label"><b>Date de décès du cardinal</b></label>
+                <input type="text" class="form-control" id="cardinal_date_deces" name="cardinal_date_deces" value="{{cardinal.cardinal_date_deces}}"/>
+            </div>
+            <div class="mb-3">
+                <label for="cardinal_pays_naissance" class="form-label"><b>État de naissance du cardinal</b></label>
+                <input type="text" class="form-control" id="cardinal_pays_naissance" name="cardinal_pays_naissance" value="{{cardinal.cardinal_pays_naissance}}"/>
+            </div>
+            <div class="mb-3">
+                <label for="cardinal_ville_naissance" class="form-label"><b>Ville de naissance du cardinal</b></label>
+                <input type="text" class="form-control" id="cardinal_ville_naissance" name="cardinal_ville_naissance" value="{{cardinal.cardinal_villee_naissance}}"/>
+            </div>
+            <br>
+            <br>
+            <button class="btn btn-success btn-lg" type="submit">Modifier</button>
+            <a href="{{url_for('cardinal', cardinal_id=cardinal.cardinal_id)}}" class="btn btn-outline-secondary btn-lg">Annuler</a>
+        </form>
+        <br>
+        <br>
+    {% endif %}
+    <div align="center">
+        <a href="{{url_for('cardinal', cardinal_id=cardinal.cardinal_id)}}">Retour à la notice du cardinal</a>
+        <br>
+        <br>
+        <a href="{{url_for('index_cardinaux')}}">Retour à l'index des cardinaux</a>
+        <br>
+        <a href="{{url_for('accueil')}}">Retour à l'accueil</a>
+    </div>
+{% endblock %}

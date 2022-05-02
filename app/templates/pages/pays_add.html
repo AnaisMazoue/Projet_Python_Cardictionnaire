@@ -1,0 +1,29 @@
+{% extends "conteneur.html" %}
+
+{% block titre %} Ajout d'un État
+{% endblock %}
+
+{% block corps %}
+    <h1>Formulaire d'ajout d'État</h1>
+    <br>
+    <form class="form" method="POST" action="{{url_for('pays_add')}}">
+        <div class="mb-3">
+            <label for="pays_add_nom" class="form-label"><b>Nom de l'État</b></label>
+            <input type="text" class="form-control" id="pays_add_nom" name="pays_add_nom" placeholder="doit commencer par une majuscule">
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-success btn-lg" type="submit">Ajouter</button>
+        <a href="{{url_for('accueil')}}" class="btn btn-outline-secondary btn-lg">Annuler</a>
+    </form>
+    <br>
+    <br>
+
+    <div align="center">
+        <br>
+        <br>
+        <a href="{{url_for('index_pays')}}">Retour à l'index général des États</a>
+        <br>
+        <a href="{{url_for('accueil')}}">Retour à l'accueil</a>
+    </div>
+{% endblock %}

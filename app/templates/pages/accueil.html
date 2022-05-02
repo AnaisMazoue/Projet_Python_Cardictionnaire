@@ -1,0 +1,39 @@
+{% extends "conteneur.html" %}
+{% block corps %}
+<br>
+<h3>Le cardictionnaire</h3>
+<br>
+<p>
+    Il s'agit d'un projet de dictionnaire ayant pour sujet les cardinaux. Le Cardictionnaire vous propose alors de découvrir et compléter les informations biographiques principaux de cardinaux ayant pris part au conclave de 1644 qui a conduit à l'élection d'Innocent X.
+</p>
+<p>
+    Cette application web a été réalisée sous Python, avec Flask et SQLAlchemy dans le cadre du <a href="https://github.com/PonteIneptique/cours-python"> cours d'introduction à Python et au développement web avec Python pour les sciences humaines</a> de M. Thibault Clérice dans le cadre du master <a href="https://www.chartes.psl.eu/fr/cursus/master-technologies-numeriques-appliquees-histoire">"Technologies numériques appliquées à l'histoire"</a> de <a href="https://www.chartes.psl.eu">l'École nationale des chartes</a>. </p>
+<br>
+<div class="text-center">
+    <a href="{{url_for('index_cardinaux')}}" class="btn btn-outline-dark btn-sm">Partez à la découverte des cardinaux</a>
+</div>
+<br>
+<div class="text-center">
+    <a href="{{url_for('index_villes')}}" class="btn btn-outline-dark btn-sm">Partez à la découverte des villes de naissance, de formation ou de mission des cardinaux</a>
+</div>
+<br>
+<div class="text-center">
+    <a href="{{url_for('index_pays')}}" class="btn btn-outline-dark btn-sm">Partez à la découverte des États qui ont joué un rôle dans la vie des cardinaux</a>
+</div>
+<br>
+<div class="text-center">
+    <a href="{{url_for('index_formations')}}" class="btn btn-outline-dark btn-sm">Découvrez les parcours universitaires des cardinaux </a>
+</div>
+<p>
+    {% if cardinal %}
+    Il y a {{ cardinaux|length }} enregistrés :
+<ul>
+    {% for cardinal_id, cardinal in cardinal.items() %}
+    <li><a href="{{url_for('cardinaux', cardinal_id=cardinal_id)}}">{{cardinal.cardinal_nom}}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+{% endif %}
+</p>
+
+{% endblock %}
